@@ -1,39 +1,42 @@
 package org.deverse.summer_program.deversesummerprogram;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
+    // Declare our variables up here so that they're globally accessible. We'll define them later
+    ImageView falloutImage;
+    Button mainButton;
+
+    // The onCreate method is the first method that runs when the app starts up. It's like Java's
+    // main() method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Define the variables here. Using the `findViewById` method, Android searches the
+        // view we've set for this Activity and then returns a reference to the view with
+        // the name we've input - for the two below, we use "fallout" and "main_button" as names
+        // since that's what we've named our variables in the activity_main.xml file
+        falloutImage = (ImageView) findViewById(R.id.fallout);
+        mainButton = (Button) findViewById(R.id.main_button);
+
+        // Here, we attach an instance of a clickListener onto the main button. This just waits
+        // for a click, and when one occurs, executes the onClick() method and passes in the view
+        // that was clicked itself as an object. We've already defined `falloutImage`, and since it
+        // was originally invisible we make it visible now
+        mainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                   falloutImage.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
