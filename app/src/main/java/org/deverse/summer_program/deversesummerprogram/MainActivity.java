@@ -1,10 +1,12 @@
 package org.deverse.summer_program.deversesummerprogram;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import org.deverse.summer_program.deversesummerprogram.ParseAPI;
 
 
 public class MainActivity extends Activity {
@@ -12,6 +14,7 @@ public class MainActivity extends Activity {
     // Declare our variables up here so that they're globally accessible. We'll define them later
     ImageView falloutImage;
     Button mainButton;
+    ParseAPI parse;
 
     // The onCreate method is the first method that runs when the app starts up. It's like Java's
     // main() method
@@ -19,6 +22,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        parse = new ParseAPI(this);
 
         // Define the variables here. Using the `findViewById` method, Android searches the
         // view we've set for this Activity and then returns a reference to the view with
