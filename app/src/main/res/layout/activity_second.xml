@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/name_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+    />
+
+    <!--<Button-->
+        <!--android:id="@+id/go_back_button"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="40dp"-->
+        <!--android:text="Go back to MainActivity!!"-->
+        <!--android:layout_centerHorizontal="true"-->
+    <!--/>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/question_text"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_below="@+id/go_back_button"-->
+        <!--android:text="How are you feeling today?"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:textSize="40sp"-->
+    <!--/>-->
+
+    <!--<NumberPicker-->
+        <!--android:id="@+id/num_picker"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/go_back_button"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginTop="30dp"-->
+    <!--/>-->
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:text="I'm not sure..."-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:textSize="34sp"/>-->
+
+
+
+</RelativeLayout>
