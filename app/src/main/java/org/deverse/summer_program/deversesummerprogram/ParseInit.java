@@ -11,7 +11,7 @@ public class ParseInit extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Parse.initialize(this, "xxxx",
-                               "xxxx");
+        Parse.initialize(this, "desix7OwQe5C7gUcwzxmXDnHmawq0oVfDGp01cx7",
+                               "0GlXqrsmtpznsVm0Vxukvcg2kydKjlAHPmtdaY6O");
     }
 }
