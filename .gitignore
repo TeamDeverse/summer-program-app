@@ -3,6 +3,11 @@
 /.idea/libraries
 .DS_Store
 
+app/src/main/java/org/deverse/summer_program/deversesummerprogram/ParseInit.java
+.idea/
+*.iml
+
+
 # Built application files
 *.apk
 *.ap_
