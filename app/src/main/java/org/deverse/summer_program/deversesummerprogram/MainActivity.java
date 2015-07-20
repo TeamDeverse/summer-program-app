@@ -9,7 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 //import org.deverse.summer_program.deversesummerprogram.ParseAPI;
@@ -39,8 +43,29 @@ public class MainActivity extends Activity {
         View.OnClickListener loginClick = new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                // Get the string values from the EditTexts to log in the user
                 String email = loginEmail.getText().toString();
                 String password = loginPassword.getText().toString();
+
+                // Call the loginUser function and pass in a callback to run when we
+                // get confirmation the user logged in!
+                backend.loginUser(email, password, new LogInCallback() {
+
+                    @Override
+                    public void done(ParseUser parseUser, ParseException e) {
+
+                        System.out.println(e);
+                        if (parseUser != null) {
+                            // User does exist
+                            System.out.println("USER DOES EXIST");
+                        } else {
+                            // User does not exist
+                            System.out.println("USER DOESN'T EXIST");
+                        }
+                    }
+
+                });
+
             }
         };
 

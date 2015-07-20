@@ -2,6 +2,7 @@ package org.deverse.summer_program.deversesummerprogram;
 
 import android.content.Context;
 
+import com.parse.CountCallback;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.LogInCallback;
@@ -20,7 +21,6 @@ class ParseAPI {
     public Context context;
 
     public ParseAPI(Context context) {
-        Parse.initialize(context, "a6YcVdnzUomdTpnfLFOYC5YImQmdlCfzkpNqtPZK", "5b09yCzGmh3db0WAPBSyMkt410dtjPLxYqkXZC5h");
         this.context = context;
     }
 
