@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -26,6 +27,12 @@ public class MainActivity extends Activity {
     EditText loginEmail;
     EditText loginPassword;
     Button loginButton;
+    EditText signupFirstName;
+    EditText signupLastName;
+    EditText signupEmail;
+    EditText signupPassword;
+    EditText signupPasswordConfirm;
+    Button signupButton;
 
     // The onCreate method is the first method that runs when the app starts up. It's like Java's
     // main() method
@@ -38,7 +45,14 @@ public class MainActivity extends Activity {
         loginEmail = (EditText) findViewById(R.id.login_email);
         loginPassword = (EditText) findViewById(R.id.login_password);
         loginButton = (Button) findViewById(R.id.login_button);
+        signupFirstName=(EditText)findViewById(R.id.signup_first);
+        signupLastName=(EditText)findViewById(R.id.signup_last);
+        signupEmail=(EditText)findViewById(R.id.signup_email);
+        signupPassword=(EditText)findViewById(R.id.signup_password);
+        signupPasswordConfirm=(EditText)findViewById(R.id.signup_passwordconfirm);
+        signupButton=(Button)findViewById(R.id.signup_button);
 
+        final Intent goToWelcomeActivity = new Intent(this, WelcomeActivity.class);
 
         View.OnClickListener loginClick = new View.OnClickListener(){
             @Override
@@ -50,26 +64,51 @@ public class MainActivity extends Activity {
                 // Call the loginUser function and pass in a callback to run when we
                 // get confirmation the user logged in!
                 backend.loginUser(email, password, new LogInCallback() {
-
                     @Override
                     public void done(ParseUser parseUser, ParseException e) {
-
-                        System.out.println(e);
-                        if (parseUser != null) {
-                            // User does exist
-                            System.out.println("USER DOES EXIST");
-                        } else {
-                            // User does not exist
-                            System.out.println("USER DOESN'T EXIST");
+                       if (parseUser==null){
+                           goToWelcomeActivity.putExtra("username", parseUser. getUsername());
+                           Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
+                       } else {
+                            startActivity(goToWelcomeActivity);
                         }
                     }
-
                 });
 
             }
         };
 
+        View.OnClickListener signupClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String firstName = signupFirstName.getText().toString();
+                String lastName = signupLastName.getText().toString();
+                final String email = signupEmail.getText().toString();
+                String password = signupPassword.getText().toString();
+                String passwordconfirm = signupPasswordConfirm.getText().toString();
+
+                if (email.trim().equals("") || password.trim().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Fill in the feilds!", Toast.LENGTH_LONG).show();
+                } else if (password.equals(passwordconfirm)) {
+                    backend.signUpUser(email, password, firstName, lastName, new SignUpCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e == null) {
+                                goToWelcomeActivity.putExtra("username", email);
+                                startActivity(goToWelcomeActivity)
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Sign up failed!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Passwords don't match!", Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+
         loginButton.setOnClickListener(loginClick);
+        signupButton.setOnClickListener(signupClick);
     }
 
 }

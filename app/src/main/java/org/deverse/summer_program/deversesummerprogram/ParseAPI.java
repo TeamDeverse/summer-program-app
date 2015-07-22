@@ -42,11 +42,13 @@ class ParseAPI {
         query.findInBackground(callback);
     }
 
-    public void signUpUser(String email, String password, SignUpCallback callback) {
+    public void signUpUser(String email, String password, String firstName, String lastName, SignUpCallback callback) {
         ParseUser user = new ParseUser();
         user.setUsername(email);
         user.setPassword(password);
         user.signUpInBackground(callback);
+        user.put("first-name",firstName);
+        user.put("last_name",lastName);
     }
 
     public void loginUser(String email, String password, LogInCallback callback) {
