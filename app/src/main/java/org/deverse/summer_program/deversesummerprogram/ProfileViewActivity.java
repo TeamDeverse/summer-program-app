@@ -15,3 +15,5 @@ public class ProfileViewActivity extends Activity {
         setContentView(R.layout.activity_profile_view);
     }
 
+}
+

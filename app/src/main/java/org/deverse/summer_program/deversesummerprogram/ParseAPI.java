@@ -46,6 +46,8 @@ class ParseAPI {
         ParseUser user = new ParseUser();
         user.setUsername(email);
         user.setPassword(password);
+        user.put("first_name", firstName);
+        user.put("last_name", lastName);
         user.signUpInBackground(callback);
         user.put("first-name",firstName);
         user.put("last_name",lastName);

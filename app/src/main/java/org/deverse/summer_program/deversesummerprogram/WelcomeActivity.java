@@ -12,13 +12,19 @@ import android.widget.TextView;
 public class WelcomeActivity extends Activity {
 
     TextView helloText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        // Find views in XML
         helloText = (TextView) findViewById(R.id.hello_text);
+
+        // Get the username from the intent
         Intent fromMainActivity = getIntent();
         String username = fromMainActivity.getStringExtra("username");
         helloText.setText("Welcome back, " + username);
+
     }
 }
