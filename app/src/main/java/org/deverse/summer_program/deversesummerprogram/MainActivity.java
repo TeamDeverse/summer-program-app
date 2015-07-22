@@ -76,6 +76,7 @@ public class MainActivity extends Activity {
                     public void done(ParseUser parseUser, ParseException e) {
                         if (parseUser != null) {
                             // User does exist
+                            goToWelcomeActivity.putExtra("username", parseUser.getUsername());
                             startActivity(goToWelcomeActivity);
                         } else {
                             // User does not exist
@@ -93,7 +94,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 String firstName = signupFirstName.getText().toString();
                 String lastName = signupLastName.getText().toString();
-                String email = signupEmail.getText().toString();
+                final String email = signupEmail.getText().toString();
                 String password = signupPassword.getText().toString();
                 String passwordConfirm = signupPasswordConfirm.getText().toString();
 
@@ -107,6 +108,7 @@ public class MainActivity extends Activity {
                         public void done(ParseException e) {
                             // What happens when we sign up a user
                             if (e == null) {
+                                goToWelcomeActivity.putExtra("username", email);
                                 startActivity(goToWelcomeActivity);
                             } else {
                                 Toast.makeText(getApplicationContext(), "Signup Failed!", Toast.LENGTH_LONG).show();
