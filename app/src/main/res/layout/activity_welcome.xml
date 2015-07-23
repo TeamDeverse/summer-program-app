@@ -7,6 +7,7 @@
     tools:context="org.deverse.summer_program.deversesummerprogram.WelcomeActivity">
 
     <TextView
+        android:id="@+id/hello_text"
         android:text="@string/hello_world"
         android:id="@+id/hello_text"
         android:layout_width="wrap_content"

@@ -53,14 +53,7 @@ public class MainActivity extends Activity {
         signupLastName=(EditText)findViewById(R.id.signup_last);
         signupEmail=(EditText)findViewById(R.id.signup_email);
         signupPassword=(EditText)findViewById(R.id.signup_password);
-        signupPasswordConfirm=(EditText)findViewById(R.id.signup_passwordconfirm);
         signupButton=(Button)findViewById(R.id.signup_button);
-
-        // All the signup views
-        signupFirstName = (EditText) findViewById(R.id.signup_first);
-        signupLastName = (EditText) findViewById(R.id.signup_last);
-        signupEmail = (EditText) findViewById(R.id.signup_email);
-        signupPassword = (EditText) findViewById(R.id.signup_password);
         signupPasswordConfirm = (EditText) findViewById(R.id.signup_password_confirm);
         signupButton = (Button) findViewById(R.id.signup_button);
 
@@ -100,7 +93,6 @@ public class MainActivity extends Activity {
                 String lastName = signupLastName.getText().toString();
                 final String email = signupEmail.getText().toString();
                 String password = signupPassword.getText().toString();
-
                 String passwordConfirm = signupPasswordConfirm.getText().toString();
 
                 if (email.trim().equals("") || password.trim().equals("")) {
