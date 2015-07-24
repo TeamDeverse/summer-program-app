@@ -36,7 +36,7 @@
             <LinearLayout
                 android:id="@+id/site_location"
                 android:layout_width="fill_parent"
-                android:layout_height="600dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_below="@+id/site_location_button"
                 android:visibility="gone">
@@ -45,9 +45,29 @@
                     android:id="@+id/site_location_text"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:text="Site Location"
+                    android:layout_marginLeft="15dp"
+                    android:text="Location:"
+                    android:textSize="@dimen/big_text_size"
+                />
+
+                <TextView
+                    android:id="@+id/site_location_street"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_below="@+id/site_location_text"
+                    android:text="1234 Main Street"
+                    android:textSize="@dimen/big_text_size"
+                />
+
+                <TextView
+                    android:id="@+id/site_location_city"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_below="@+id/site_location_street"
+                    android:text="Cambridge, MA 02139"
                     android:textSize="@dimen/big_text_size"
                 />
 
@@ -59,7 +79,8 @@
                 android:layout_height="50dp"
                 android:text="Contact Information"
                 android:layout_below="@+id/site_location"
-                />
+                android:layout_marginTop="10dp"
+            />
 
             <LinearLayout
                 android:id="@+id/site_contact_info"
@@ -73,9 +94,59 @@
                     android:id="@+id/site_coordinator"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:text="Site Coordinator"
+                    android:layout_marginLeft="15dp"
+                    android:text="Site Coordinator:"
+                    android:textSize="@dimen/big_text_size"
+                />
+
+                <TextView
+                    android:id="@+id/site_coordinator_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_below="@+id/site_coordinator"
+                    android:text="John Smith"
+                    android:textSize="@dimen/big_text_size"
+                />
+
+                <TextView
+                    android:id="@+id/site_coordinator_number"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_below="@+id/site_coordinator_name"
+                    android:text="(617) 456-7890"
+                    android:textSize="@dimen/big_text_size"
+                />
+
+                <TextView
+                    android:id="@+id/site_contact_location"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:text="Location:"
+                    android:textSize="@dimen/big_text_size"
+                />
+
+                <TextView
+                    android:id="@+id/site_contact_street"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_below="@+id/site_contact_location"
+                    android:text="1234 Main Street"
+                    android:textSize="@dimen/big_text_size"
+                />
+
+                <TextView
+                    android:id="@+id/site_contact_city"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_below="@+id/site_contact_street"
+                    android:text="Cambridge, MA 02139"
                     android:textSize="@dimen/big_text_size"
                 />
 
