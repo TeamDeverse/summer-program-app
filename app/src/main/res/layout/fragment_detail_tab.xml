@@ -5,12 +5,84 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/site_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Site Details"
+        android:layout_marginTop="10dp"
+        android:text="Site #"
         android:textSize="@dimen/big_text_size"
     />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/site_number"
+        android:layout_marginTop="10dp">
+
+        <RelativeLayout
+            android:id="@+id/container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/site_location_button"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="Location"
+            />
+
+            <LinearLayout
+                android:id="@+id/site_location"
+                android:layout_width="fill_parent"
+                android:layout_height="600dp"
+                android:orientation="vertical"
+                android:layout_below="@+id/site_location_button"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/site_location_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="Site Location"
+                    android:textSize="@dimen/big_text_size"
+                />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/site_contact_button"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="Contact Information"
+                android:layout_below="@+id/site_location"
+                />
+
+            <LinearLayout
+                android:id="@+id/site_contact_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/site_contact_button"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/site_coordinator"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="Site Coordinator"
+                    android:textSize="@dimen/big_text_size"
+                />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

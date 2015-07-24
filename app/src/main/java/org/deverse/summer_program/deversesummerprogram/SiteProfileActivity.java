@@ -30,7 +30,7 @@ public class SiteProfileActivity extends Activity {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Set Tab Icon and Titles
-        Detail = actionBar.newTab().setText("Detail");
+        Detail = actionBar.newTab().setText("Details");
         Schedule = actionBar.newTab().setText("Schedule");
 
         // Set Tab Listeners
