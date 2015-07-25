@@ -1,0 +1,44 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.deverse.summer_program.deversesummerprogram.GenericActivity">
+
+    <TextView
+        android:id="@+id/time_pick_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Please select your next available date and time."/>
+    <LinearLayout
+        android:layout_below="@+id/time_pick_text"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/buttonSelectDate"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Date" />
+
+        <Button
+            android:id="@+id/buttonSelectTime"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Time" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>
