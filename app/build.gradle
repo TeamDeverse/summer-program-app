@@ -20,8 +20,10 @@ android {
 }
 
 dependencies {
-    compile 'com.parse.bolts:bolts-android:1.+'
     compile fileTree(dir: 'libs', include: 'Parse-1.9.3.jar')
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.parse.bolts:bolts-android:1.+'
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.google.android.gms:play-services:4.2.+'
+    // compile 'com.google.android.gms:play-services:7.5.0'
 }

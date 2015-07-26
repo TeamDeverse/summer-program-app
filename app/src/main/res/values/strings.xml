@@ -5,4 +5,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_second">SecondActivity</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_maps">AvailabilityMap</string>
+    <string name="in_mexico_string">Estoy en México</string>
+    <string name="in_washington_string">I\'m at the Washington Monument</string>
 </resources>
