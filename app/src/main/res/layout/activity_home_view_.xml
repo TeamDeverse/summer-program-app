@@ -1,19 +1,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="org.deverse.summer_program.deversesummerprogram.HomeView_Activity">
 
+    <ImageView
+        android:id="@+id/bth_Banner"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:src="@drawable/bth_logo"
+        android:layout_marginTop="10dp"
+        />
+
     <TextView
         android:id="@+id/home_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="18dp"
         android:textSize="50dp"
         android:text="Home"
+        android:textColor="#71c251"
+        android:fontFamily="serif"
         />
 
     <Button
@@ -24,6 +36,19 @@
         android:textSize="@dimen/big_text_size"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="10dp"
+        android:paddingTop="115dp"
+        android:background="@drawable/round_button"
+        />
+
+    <ImageView
+        android:id="@+id/profile"
+        android:layout_width="125dp"
+        android:layout_height="150dp"
+        android:src="@drawable/profile"
+        android:elevation="2dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="10dp"
+        android:paddingLeft="20dp"
         />
 
     <Button
@@ -35,6 +60,18 @@
         android:layout_marginTop="100dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
+        android:paddingTop="115dp"
+        android:background="@drawable/round_button"
+        />
+
+    <ImageView
+        android:id="@+id/search"
+        android:layout_width="150dp"
+        android:layout_height="130dp"
+        android:src="@drawable/search"
+        android:elevation="2dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="190dp"
         />
 
     <Button
@@ -45,7 +82,19 @@
         android:textSize="@dimen/big_text_size"
         android:layout_marginTop="275dp"
         android:layout_marginLeft="10dp"
+        android:paddingTop="115dp"
+        android:background="@drawable/round_button"
         />
+
+    <ImageView
+    android:id="@+id/sign_up"
+    android:layout_width="150dp"
+    android:layout_height="135dp"
+    android:src="@drawable/sign_up"
+    android:elevation="2dp"
+    android:layout_marginTop="275dp"
+    android:layout_marginLeft="10dp"
+    />
 
     <Button
         android:id="@+id/Sites_button"
@@ -56,6 +105,18 @@
         android:layout_marginTop="275dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
+        android:paddingTop="115dp"
+        android:background="@drawable/round_button"
+        />
+
+    <ImageView
+        android:id="@+id/sites"
+        android:layout_width="150dp"
+        android:layout_height="125dp"
+        android:src="@drawable/location"
+        android:elevation="2dp"
+        android:layout_marginTop="275dp"
+        android:layout_marginLeft="190dp"
         />
 
     <!-- Days until next appointment in java -->
