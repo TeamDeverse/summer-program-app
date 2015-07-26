@@ -23,4 +23,13 @@
         android:textSize="@dimen/big_text_size"
     />
 
+    <ListView
+        android:id="@+id/time_slot_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date_text"
+        android:layout_margin="15dp">
+
+    </ListView>
+
 </RelativeLayout>
