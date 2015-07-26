@@ -121,6 +121,16 @@
                 />
 
                 <TextView
+                    android:id="@+id/site_coordinator_email"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_below="@+id/site_coordinator_number"
+                    android:text="johnsmith@gmail.com"
+                    android:textSize="@dimen/big_text_size"
+                />
+
+                <TextView
                     android:id="@+id/site_contact_location"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
