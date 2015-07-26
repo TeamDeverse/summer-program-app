@@ -17,9 +17,9 @@ import java.util.HashMap;
  */
 public class ListViewAdapter extends BaseAdapter {
 
-    public static final String FIRST_COLUMN = "Date";
-    public static final String SECOND_COLUMN = "Time Slot";
-    public static final String THIRD_COLUMN = "Volunteers Needed";
+    private static final String FIRST_COLUMN = "Date";
+    private static final String SECOND_COLUMN = "Time Slot";
+    private static final String THIRD_COLUMN = "Volunteers Needed";
 
     // List contains rows of data stored in hashMaps
     public ArrayList<HashMap<String, String>> dataList;

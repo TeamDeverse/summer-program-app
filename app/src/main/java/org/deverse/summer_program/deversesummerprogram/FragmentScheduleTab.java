@@ -6,7 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by aluh on 7/22/2015.
@@ -15,6 +19,11 @@ public class FragmentScheduleTab extends Fragment {
 
     CalendarView calendar;
     TextView selectedDate;
+    ListView timeSlotList;
+    private static final String FIRST_COLUMN = "Date";
+    private static final String SECOND_COLUMN = "Time Slot";
+    private static final String THIRD_COLUMN = "Volunteers Needed";
+    private ArrayList<HashMap<String, String>> dataList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,6 +33,7 @@ public class FragmentScheduleTab extends Fragment {
         // All the schedule views
         calendar = (CalendarView) rootView.findViewById(R.id.calendar);
         selectedDate = (TextView) rootView.findViewById(R.id.date_text);
+        timeSlotList = (ListView) rootView.findViewById(R.id.time_slot_list);
 
         // hide the week number
         calendar.setShowWeekNumber(false);
@@ -39,6 +49,39 @@ public class FragmentScheduleTab extends Fragment {
 
         // Assign the DatechangeListener to the calendarView
         calendar.setOnDateChangeListener(dateChange);
+
+        dataList = new ArrayList<>();
+
+        // Create and add fake data
+        HashMap<String,String> row1 = new HashMap<>();
+        row1.put(FIRST_COLUMN, "7/26/2015");
+        row1.put(SECOND_COLUMN, "11:00-12:00");
+        row1.put(THIRD_COLUMN, "3");
+        dataList.add(row1);
+
+        HashMap<String,String> row2 = new HashMap<>();
+        row2.put(FIRST_COLUMN, "7/26/2015");
+        row2.put(SECOND_COLUMN, "12:00-1:00");
+        row2.put(THIRD_COLUMN, "4");
+        dataList.add(row2);
+
+        HashMap<String,String> row3 = new HashMap<>();
+        row3.put(FIRST_COLUMN, "7/26/2015");
+        row3.put(SECOND_COLUMN, "1:00-2:00");
+        row3.put(THIRD_COLUMN, "2");
+        dataList.add(row3);
+
+        HashMap<String,String> row4 = new HashMap<>();
+        row4.put(FIRST_COLUMN, "7/26/2015");
+        row4.put(SECOND_COLUMN, "2:00-3:00");
+        row4.put(THIRD_COLUMN, "1");
+        dataList.add(row4);
+
+        // Create custom adapter for the listView
+        ListViewAdapter adapter = new ListViewAdapter(this.getActivity(), dataList);
+
+        // Assign the adapter to the listView
+        timeSlotList.setAdapter(adapter);
 
         return rootView;
     }
