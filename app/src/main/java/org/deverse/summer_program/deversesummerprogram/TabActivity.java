@@ -33,8 +33,8 @@ public class TabActivity extends Activity {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Set Tab Icon and Titles
-        Detail = actionBar.newTab().setText("Tab 1");
-        Schedule = actionBar.newTab().setText("Tab 2");
+        Detail = actionBar.newTab().setText("Search by Time");
+        Schedule = actionBar.newTab().setText("Search by Location");
 
         // Set Tab Listeners
         Detail.setTabListener(new TabListener(tabOneFragment));

@@ -4,9 +4,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 
-/**
- * Created by aluh on 7/22/2015.
- */
+
 public class TabListener implements ActionBar.TabListener {
 
     Fragment fragment;
