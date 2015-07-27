@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/location"
         android:layout_centerHorizontal="true"
-        android:text="Show Map" />
+        android:text="Search" />
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
