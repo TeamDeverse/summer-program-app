@@ -9,7 +9,9 @@ import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -30,10 +32,17 @@ public class FragmentScheduleTab extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_schedule_tab, container, false);
 
+        // Get today's date
+        SimpleDateFormat sdf = new SimpleDateFormat("M/dd/yyyy");
+        String today = sdf.format(new Date());
+
         // All the schedule views
         calendar = (CalendarView) rootView.findViewById(R.id.calendar);
         selectedDate = (TextView) rootView.findViewById(R.id.date_text);
         timeSlotList = (ListView) rootView.findViewById(R.id.time_slot_list);
+
+        // Set the initial selected date to today's date
+        selectedDate.setText(today);
 
         // hide the week number
         calendar.setShowWeekNumber(false);
@@ -54,25 +63,25 @@ public class FragmentScheduleTab extends Fragment {
 
         // Create and add fake data
         HashMap<String,String> row1 = new HashMap<>();
-        row1.put(FIRST_COLUMN, "7/26/2015");
+        row1.put(FIRST_COLUMN, today);
         row1.put(SECOND_COLUMN, "11:00-12:00");
         row1.put(THIRD_COLUMN, "3");
         dataList.add(row1);
 
         HashMap<String,String> row2 = new HashMap<>();
-        row2.put(FIRST_COLUMN, "7/26/2015");
+        row2.put(FIRST_COLUMN, today);
         row2.put(SECOND_COLUMN, "12:00-1:00");
         row2.put(THIRD_COLUMN, "4");
         dataList.add(row2);
 
         HashMap<String,String> row3 = new HashMap<>();
-        row3.put(FIRST_COLUMN, "7/26/2015");
+        row3.put(FIRST_COLUMN, today);
         row3.put(SECOND_COLUMN, "1:00-2:00");
         row3.put(THIRD_COLUMN, "2");
         dataList.add(row3);
 
         HashMap<String,String> row4 = new HashMap<>();
-        row4.put(FIRST_COLUMN, "7/26/2015");
+        row4.put(FIRST_COLUMN, today);
         row4.put(SECOND_COLUMN, "2:00-3:00");
         row4.put(THIRD_COLUMN, "1");
         dataList.add(row4);
