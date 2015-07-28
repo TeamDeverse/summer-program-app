@@ -29,6 +29,12 @@
             android:layout_height="wrap_content"
             android:text="Select Date" />
 
+        <CalendarView
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:visibility="invisible">
+        </CalendarView>
+
         <Button
             android:id="@+id/buttonSelectTime"
             android:layout_marginTop="20dp"

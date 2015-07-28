@@ -4,21 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/location_pick_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Please enter you current location."/>
+
+
     <EditText
-        android:id="@+id/location"
+        android:id="@+id/enter_location"
+        android:layout_below="@+id/location_pick_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_alignParentLeft="true"
         android:hint="Enter Address"
+        android:textSize="25dp"
         android:inputType="textPostalAddress" />
 
     <Button
         android:id="@+id/mapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/location"
+        android:layout_below="@+id/enter_location"
         android:layout_centerHorizontal="true"
-        android:text="Search" />
+        android:textSize="25dp"
+        android:text="Search Location" />
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

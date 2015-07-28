@@ -3,23 +3,29 @@ package org.deverse.summer_program.deversesummerprogram;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class TabActivity extends Activity {
+public class TabActivity extends FragmentActivity {
 
     // Declare tab variables
-    ActionBar.Tab Detail, Schedule;
+    ActionBar.Tab timeSearch, locationSearch;
     Fragment tabOneFragment = new TabOneFragment();
     Fragment tabTwoFragment = new TabTwoFragment();
+
+    public static FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
+
+        fragmentManager = getFragmentManager();
 
         ActionBar actionBar = getActionBar();
 
@@ -33,15 +39,17 @@ public class TabActivity extends Activity {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // Set Tab Icon and Titles
-        Detail = actionBar.newTab().setText("Search by Time");
-        Schedule = actionBar.newTab().setText("Search by Location");
+        timeSearch = actionBar.newTab().setText("Search by Time");
+        locationSearch = actionBar.newTab().setText("Search by Location");
 
         // Set Tab Listeners
-        Detail.setTabListener(new TabListener(tabOneFragment));
-        Schedule.setTabListener(new TabListener(tabTwoFragment));
+        timeSearch.setTabListener(new TabListener(tabOneFragment));
+        locationSearch.setTabListener(new TabListener(tabTwoFragment));
 
         // Add Tabs to ActionBar
-        actionBar.addTab(Detail);
-        actionBar.addTab(Schedule);
+        actionBar.addTab(timeSearch);
+        actionBar.addTab(locationSearch);
     }
+
+
 }
