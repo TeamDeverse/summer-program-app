@@ -4,9 +4,11 @@ import android.content.Context;
 
 import com.parse.CountCallback;
 import com.parse.FindCallback;
+import com.parse.FunctionCallback;
 import com.parse.GetCallback;
 import com.parse.LogInCallback;
 import com.parse.Parse;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
@@ -16,7 +18,9 @@ import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class ParseAPI {
 
@@ -26,6 +30,8 @@ class ParseAPI {
         this.context = context;
     }
 
+
+
     /* * * * * * * *
      *
      * SITE METHODS
@@ -33,14 +39,17 @@ class ParseAPI {
      * * * * * * * */
 
     // Gets all the sites
-    public void getAllSites(FindCallback<ParseObject> callback) {
+
+    public void getAllSites(FindCallback callback) {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Sites");
         query.findInBackground(callback);
     }
 
+
+
     // Get sites by a location. Pass in a latitude and longitude, and it will order sites by
     // proximity to that latitude/longitude combination
-    public void getSitesByLocation(double latitude, double longitude, FindCallback<ParseObject> callback) {
+    public void getSitesByLocation(double latitude, double longitude, FindCallback callback) {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Sites");
         ParseGeoPoint currentLocation = new ParseGeoPoint(latitude, longitude);
         query.whereNear("geolocation", currentLocation);
@@ -54,14 +63,16 @@ class ParseAPI {
      * * * * * * * */
 
     // Gets all the upcoming times for every site
-    public void getTimes(FindCallback<ParseObject> callback) {
+
+    public void getTimes(FindCallback callback) {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Times");
         query.orderByDescending("date");
         query.findInBackground(callback);
     }
 
     // Pass in a Java Date function, will pass back all the upcoming times for all sites for a date
-    public void getTimesByDate(Date date, FindCallback<ParseObject> callback) {
+
+    public void getTimesByDate(Date date, FindCallback callback) {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Times");
         query.whereEqualTo("date", date);
         query.orderByDescending("start_hour");
@@ -69,26 +80,29 @@ class ParseAPI {
     }
 
     // Pass in a Site object, will pass back all the times
-    public void getTimesForSite(ParseObject site, FindCallback<ParseObject> callback) {
+
+    public void getTimesForSite(String site_id, FindCallback callback) {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Times");
-        query.whereEqualTo("Site", site);
+        query.whereEqualTo("site_id", site_id);
         query.orderByDescending("date");
         query.findInBackground(callback);
     }
 
     // Pass in a Java Date function for a day with a Site object, and will pass back all the times for that day
-    public void getTimesForSiteByDate(ParseObject site, Date day, FindCallback<ParseObject> callback) {
+
+    public void getTimesForSiteByDate(String site_id, Date day, FindCallback callback) {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Times");
         query.whereEqualTo("date", day);
-        query.whereEqualTo("Site", site);
+        query.whereEqualTo("site_id", site_id);
         query.orderByDescending("start_hour");
         query.findInBackground(callback);
     }
 
     // Pass in a Java Date function for a day with a Site object, will pass back all the upcoming times
-    public void getTimesForSiteAfterDate(ParseObject site, Date day, FindCallback<ParseObject> callback) {
+
+    public void getTimesForSiteAfterDate(String site_id, Date day, FindCallback callback) {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Times");
-        query.whereEqualTo("Site", site);
+        query.whereEqualTo("site_id", site_id);
         query.whereGreaterThan("date", day);
         query.orderByDescending("date");
         query.findInBackground(callback);
@@ -101,18 +115,31 @@ class ParseAPI {
      * * * * * * * */
 
     // Pass in a site object, and will return all the Time objects a user is signed up for
-    public void getTimesForSiteWithUserSignups(ParseObject site, FindCallback<ParseObject> callback) {
+
+    public void getTimesForSiteWithUserSignups(String site_id, FunctionCallback<Map<String, List<ParseObject>>> callback) {
+        System.out.println("IN HERE fff");
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Signups");
-        query.whereEqualTo("site", site);
-        query.whereEqualTo("user", this.getCurrentUser());
-        query.findInBackground(callback);
+        Map<String, String> values = new HashMap<String, String>();
+        values.put("site_id", site_id);
+//        values.put("user_id", this.getCurrentUser().getObjectId());
+        values.put("user_id", "UrIuR0kj4b");
+        ParseCloud.callFunctionInBackground("getTimesForSiteWithUserSignups", values, callback);
+    }
+
+    // Pass in a site object, and will return all the Time objects a user is signed up for
+    public void getTimesForSiteWithUserSignupsByDate(String site_id, Date day, FunctionCallback<Map<String, List<ParseObject>>> callback) {
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Signups");
+        Map<String, String> values = new HashMap<String, String>();
+        values.put("site_id", site_id);
+        values.put("user_id", this.getCurrentUser().getObjectId());
+        values.put("date", day.toString());
+        ParseCloud.callFunctionInBackground("getTimesForSiteWithUserSignupsByDate", values, callback);
     }
 
     // Get all user signups
-    public void getUserSignups(FindCallback<ParseObject> callback) {
+    public void getUserSignups(FindCallback callback) {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Signups");
-        query.whereEqualTo("user", this.getCurrentUser());
-        query.include("times");
+        query.whereEqualTo("user_id", this.getCurrentUser().getObjectId());
         query.findInBackground(callback);
     }
 
@@ -121,9 +148,10 @@ class ParseAPI {
     // Pass in a Time object to sign a user up. No callback needed
     public void signupForTime(ParseObject time) {
         ParseObject signup = new ParseObject("Signups");
-        signup.put("user", this.getCurrentUser());
-        signup.put("times", time);
-        signup.put("site", time.get("Site"));
+
+        signup.put("user_id", this.getCurrentUser().getObjectId());
+        signup.put("time_id", time.getObjectId());
+        signup.put("site_id", time.get("site_id"));
         signup.saveInBackground();
     }
 
@@ -131,9 +159,10 @@ class ParseAPI {
     // signup is saved
     public void signupForTimeWithCallback(ParseObject time, SaveCallback callback) {
         ParseObject signup = new ParseObject("Signups");
-        signup.put("user", this.getCurrentUser());
-        signup.put("times", time);
-        signup.put("site", time.get("Site"));
+
+        signup.put("user_id", this.getCurrentUser().getObjectId());
+        signup.put("time_id", time.getObjectId());
+        signup.put("site_id", time.get("site_id"));
         signup.saveInBackground(callback);
     }
 
