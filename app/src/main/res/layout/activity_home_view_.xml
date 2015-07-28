@@ -125,11 +125,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/big_text_size"
         android:text= " day until your next appointment"
+        android:textColor="#71c251"
+        />
 
-
+    <TextView
+        android:id="@+id/log_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textSize="@dimen/small_text_size"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/home_view"
+        android:layout_alignEnd="@+id/home_view"
         />
 
 </RelativeLayout>
