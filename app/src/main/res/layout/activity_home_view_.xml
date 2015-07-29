@@ -44,7 +44,7 @@
         android:id="@+id/profile"
         android:layout_width="125dp"
         android:layout_height="150dp"
-        android:src="@drawable/profile"
+        android:src="@drawable/prof_icon"
         android:elevation="2dp"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="10dp"
