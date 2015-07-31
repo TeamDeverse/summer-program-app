@@ -46,6 +46,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:name="com.google.android.gms.maps.MapFragment"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                 />
 
                 <TextView
