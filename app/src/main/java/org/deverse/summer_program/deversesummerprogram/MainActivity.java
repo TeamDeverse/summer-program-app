@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R .layout.activity_main);
 
         // Get reference to our API Wrapper
         backend = new ParseAPI(this);
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
         signupLastName=(EditText)findViewById(R.id.signup_last);
         signupEmail=(EditText)findViewById(R.id.signup_email);
         signupPassword=(EditText)findViewById(R.id.signup_password);
-        signupPasswordConfirm=(EditText)findViewById(R.id.signup_passwordconfirm);
+        signupPasswordConfirm=(EditText)findViewById(R.id.signup_password_confirm);
         signupButton=(Button)findViewById(R.id.signup_button);
 
         // All the signup views
