@@ -59,11 +59,7 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDm1jkfJOaL-HBlkCMTsdqR52G9aQwJMn8" />
-        <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_site_profile" >
-        </activity>
+            android:value="AIzaSyBmVHE3xeesfsx_vjOZSxv9JZUnOLc5IOE" />
 
     </application>
 

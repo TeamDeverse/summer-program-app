@@ -11,12 +11,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 /**
  * Created by aluh on 7/22/2015.
  */
 public class FragmentDetailTab extends Fragment {
 
     private static GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private static double latitude, longitude;
     final Activity thisActivity = this.getActivity();
 
     Button locationButton;
@@ -70,6 +77,10 @@ public class FragmentDetailTab extends Fragment {
         locationButton.setOnClickListener(locationClick);
         contactButton.setOnClickListener(contactClick);
 
+        // Washington DC
+        latitude = 38.889;
+        longitude = -77.0352;
+
         // Set up the map
         setUpMapIfNeeded();
 
@@ -85,7 +96,7 @@ public class FragmentDetailTab extends Fragment {
             fm = getChildFragmentManager();
         }
 
-        return (MapFragment) fm.findFragmentById(R.id.map);
+        return (MapFragment) fm.findFragmentById(R.id.site_map);
     }
 
     /***** Sets up the map if it is possible to do so *****/
@@ -145,9 +156,9 @@ public class FragmentDetailTab extends Fragment {
         super.onDestroyView();
         if (mMap != null) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.map)).commit();
+                getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.site_map)).commit();
             } else {
-                getChildFragmentManager().beginTransaction().remove(getChildFragmentManager().findFragmentById(R.id.map)).commit();
+                getChildFragmentManager().beginTransaction().remove(getChildFragmentManager().findFragmentById(R.id.site_map)).commit();
             }
 
             mMap = null;
