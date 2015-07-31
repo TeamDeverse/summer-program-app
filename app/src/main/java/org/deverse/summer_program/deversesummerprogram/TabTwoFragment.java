@@ -112,9 +112,6 @@ public class TabTwoFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         if (mMap != null) {
-
-
-
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 getFragmentManager().beginTransaction().remove(getFragmentManager().findFragmentById(R.id.map)).commit();
             } else {

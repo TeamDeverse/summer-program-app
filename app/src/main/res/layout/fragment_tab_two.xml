@@ -41,8 +41,9 @@
         android:layout_height="match_parent"
         android:id="@+id/map"
         android:layout_below="@+id/mapButton"
-        tools:context="org.deverse.summer_program.deversesummerprogram.MapsActivity"
         android:name="com.google.android.gms.maps.MapFragment" />
+        <!--tools:context="org.deverse.summer_program.deversesummerprogram.MapsActivity" -->
+
 
 
 

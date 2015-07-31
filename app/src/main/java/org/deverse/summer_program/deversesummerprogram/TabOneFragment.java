@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ActionMenuView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
@@ -28,26 +29,10 @@ public class TabOneFragment extends Fragment {
     Button timeSelectionButton;
     Button searchButton;
 
+    LinearLayout calendarLinearLayout;
+    LinearLayout timepickerLinearLayout;
 
-    static final int DATE_DIALOG_ID = 0;
-    static final int TIME_DIALOG_ID = 1;
-    // variables to save user selected date and time
-    public  int year,month,day,hour,minute;
-    public  int yearSelected,monthSelected,daySelected,hourSelected,minuteSelected;
 
-    // declare  the variables to show the date and time whenTime and Date Picker Dialog first appears
-    private int mYear, mMonth, mDay,mHour,mMinute;
-
-    public void DateAndTimePickerActivity()
-    {
-        // Assign current Date and Time Values to Variables
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-        mHour = c.get(Calendar.HOUR_OF_DAY);
-        mMinute = c.get(Calendar.MINUTE);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,12 +43,22 @@ public class TabOneFragment extends Fragment {
         timeSelectionButton=(Button)rootView.findViewById(R.id.buttonSelectTime);
         searchButton=(Button)rootView.findViewById(R.id.buttonSearchDateTime);
 
+        calendarLinearLayout = (LinearLayout) rootView.findViewById(R.id.calendar_linearLayout);
+        timepickerLinearLayout = (LinearLayout) rootView.findViewById(R.id.timepicker_linearLayout);
+
         // Set ClickListener on btnSelectDate
         dateSelectionButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                // Show the DatePickerDialog
-                self.showDialog(DATE_DIALOG_ID);
+                if (timepickerLinearLayout.getVisibility()==View.VISIBLE){
+                    timepickerLinearLayout.setVisibility(View.GONE);
+                }
+                if (calendarLinearLayout.getVisibility() == View.VISIBLE){
+                    calendarLinearLayout.setVisibility(View.GONE);
+                } else {
+                    calendarLinearLayout.setVisibility(View.VISIBLE);
+                }
+
             }
         });
 
@@ -71,8 +66,14 @@ public class TabOneFragment extends Fragment {
         timeSelectionButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                // Show the TimePickerDialog
-                self.showDialog(TIME_DIALOG_ID);
+                if (calendarLinearLayout.getVisibility()==View.VISIBLE){
+                    calendarLinearLayout.setVisibility(View.GONE);
+                }
+                if (timepickerLinearLayout.getVisibility() == View.VISIBLE){
+                    timepickerLinearLayout.setVisibility(View.GONE);
+                } else {
+                    timepickerLinearLayout.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -83,30 +84,7 @@ public class TabOneFragment extends Fragment {
 
 
 
-    private DatePickerDialog.OnDateSetListener mDateSetListener =
-            new DatePickerDialog.OnDateSetListener() {
-                // the callback received when the user "sets" the Date in the DatePickerDialog
-                public void onDateSet(DatePicker view, int yearSelected,
-                                      int monthOfYear, int dayOfMonth) {
-                    year = yearSelected;
-                    month = monthOfYear;
-                    day = dayOfMonth;
-                    // Set the Selected Date in Select date Button
-                    dateSelectionButton.setText("Date selected : "+day+"-"+month+"-"+year);
-                }
-            };
 
-    // Register  TimePickerDialog listener
-    private TimePickerDialog.OnTimeSetListener mTimeSetListener =
-            new TimePickerDialog.OnTimeSetListener() {
-                // the callback received when the user "sets" the TimePickerDialog in the dialog
-                public void onTimeSet(TimePicker view, int hourOfDay, int min) {
-                    hour = hourOfDay;
-                    minute = min;
-                    // Set the Selected Date in Select date Button
-                    timeSelectionButton.setText("Time selected :"+hour+"-"+minute);
-                }
-            };
 
 
 
