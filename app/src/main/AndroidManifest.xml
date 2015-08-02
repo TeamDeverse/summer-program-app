@@ -62,14 +62,17 @@
 
         <activity
             android:name=".SearchActivity"
-            android:label="@string/title_activity_search">
-
+            android:label="@string/title_activity_search" >
         </activity>
-
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" >
         </activity>
+        <activity
+            android:name=".SiteProfileActivity"
+            android:label="@string/title_activity_site_profile" >
+        </activity>
+
     </application>
 
 </manifest>

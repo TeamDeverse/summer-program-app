@@ -27,13 +27,13 @@ public class MainActivity extends Activity {
     EditText loginEmail;
     EditText loginPassword;
     Button loginButton;
-    EditText signupPassword;
-    EditText signuppasswordconfirm;
-    EditText signupfirstname;
-    EditText signuplastname;
-    EditText signupEmail;
-    Button signupbutton;
 
+    EditText signupFirstName;
+    EditText signupLastName;
+    EditText signupEmail;
+    EditText signupPassword;
+    EditText signupPasswordConfirm;
+    Button signupButton;
 
     // The onCreate method is the first method that runs when the app starts up. It's like Java's
     // main() method
@@ -42,22 +42,26 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Get reference to our API Wrapper
         backend = new ParseAPI(this);
+
+        // All the login views
         loginEmail = (EditText) findViewById(R.id.login_email);
         loginPassword = (EditText) findViewById(R.id.login_password);
         loginButton = (Button) findViewById(R.id.login_button);
 
-        signupfirstname = (EditText) findViewById(R.id.signup_first);
-        signuplastname = (EditText) findViewById(R.id.signup_last);
-        signupPassword = (EditText) findViewById(R.id.signup_password);
-        signuppasswordconfirm = (EditText) findViewById(R.id.signup_passwordconfirm);
+        // All the signup views
+        signupFirstName = (EditText) findViewById(R.id.signup_first);
+        signupLastName = (EditText) findViewById(R.id.signup_last);
         signupEmail = (EditText) findViewById(R.id.signup_email);
-        signupbutton = (Button) findViewById(R.id.signup_button);
+        signupPassword = (EditText) findViewById(R.id.signup_password);
+        signupPasswordConfirm = (EditText) findViewById(R.id.signup_confirm_password);
+        signupButton = (Button) findViewById(R.id.signup_button);
 
         final Intent goToWelcomeActivity = new Intent(this, WelcomeActivity.class);
 
-
-        View.OnClickListener loginClick = new View.OnClickListener() {
+        // ClickListeners for each button
+        View.OnClickListener loginClick = new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 // Get the string values from the EditTexts to log in the user
@@ -76,10 +80,9 @@ public class MainActivity extends Activity {
                             // User does exist
                             goToWelcomeActivity.putExtra("username", parseUser.getUsername());
                             startActivity(goToWelcomeActivity);
-                            System.out.println("USER DOES EXIST");
                         } else {
                             // User does not exist
-                            System.out.println("USER DOESN'T EXIST");
+                            Toast.makeText(getApplicationContext(), "User does not exist!", Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -88,25 +91,28 @@ public class MainActivity extends Activity {
             }
         };
 
-        View.OnClickListener signupClick = new View.OnClickListener() {
+        View.OnClickListener signupClick = new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                // Get the string values from the EditTexts to signup the user
+                String firstName = signupFirstName.getText().toString();
+                String lastName = signupLastName.getText().toString();
+                final String email = signupEmail.getText().toString();
                 String password = signupPassword.getText().toString();
-                String passwordConfirm = signuppasswordconfirm.getText().toString();
-                String firstname = signupfirstname.getText().toString();
-                String lastname = signuplastname.getText().toString();
-                final String signupemail = signupEmail.getText().toString();
+                String passwordConfirm = signupPasswordConfirm.getText().toString();
 
-
-                if (signupemail.trim().equals("") || password.trim().equals("")) {
-                    //Password equal each other
+                if (email.trim().equals("") || password.trim().equals("")) {
+                    // Email or password is blank
                     Toast.makeText(getApplicationContext(), "Fill in the fields!", Toast.LENGTH_LONG).show();
-                } else if (password.equals(passwordConfirm)) {
-                    backend.signUpUser(signupemail, password, firstname, lastname, new SignUpCallback() {
+
+                } else if (password.equals(passwordConfirm)){
+                    // Passwords equal each other
+                    backend.signUpUser(email, password, firstName, lastName, new SignUpCallback() {
                         @Override
                         public void done(ParseException e) {
+                            // What happens when we sign up a user
                             if (e == null) {
-                                goToWelcomeActivity.putExtra("username", signupemail);
+                                goToWelcomeActivity.putExtra("username", email);
                                 startActivity(goToWelcomeActivity);
                             } else {
                                 Toast.makeText(getApplicationContext(), "Signup Failed!", Toast.LENGTH_LONG).show();
@@ -114,13 +120,15 @@ public class MainActivity extends Activity {
                         }
                     });
                 } else {
-                    Toast.makeText(getApplicationContext(), "Password don't match!", Toast.LENGTH_LONG).show();
+                    // Passwords don't equal each other
+                    Toast.makeText(getApplicationContext(), "Passwords don't match!", Toast.LENGTH_LONG).show();
                 }
             }
         };
 
+        // Assign the click listener for each button
         loginButton.setOnClickListener(loginClick);
-        signupbutton.setOnClickListener(signupClick);
-
+        signupButton.setOnClickListener(signupClick);
     }
+
 }

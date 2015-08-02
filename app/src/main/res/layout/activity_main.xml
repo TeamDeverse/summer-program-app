@@ -10,113 +10,120 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:text="Login:"
         android:layout_marginTop="20dp"
-    />
+        />
 
     <EditText
         android:id="@+id/login_email"
-        android:layout_width="250dp"
+        android:layout_width="315dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_label"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
-        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textSize="25sp"
         android:hint="Email"
-    />
+        />
 
     <EditText
         android:id="@+id/login_password"
-        android:layout_width="250dp"
+        android:layout_width="315dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_email"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
-        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:textSize="25sp"
         android:hint="Password"
         android:inputType="textPassword"
-    />
+        />
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_below="@+id/login_password"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:text="Login"
-    />
+        />
 
     <TextView
+        android:id="@+id/signup_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/signup_label"
-        android:text="Sign Up"
-        android:textSize="20sp"
+        android:text="Sign Up:"
+        android:textSize="25sp"
         android:layout_marginLeft="15dp"
         android:layout_below="@+id/login_button"
         android:layout_marginTop="10dp"
         />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/signup_first"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/signup_label"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:hint="First Name"
-        android:textSize="20sp"
+        android:textSize="25sp"
         />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/signup_last"
-        android:layout_marginLeft="200dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/signup_first"
         android:layout_below="@+id/signup_label"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:hint="Last Name"
-        android:textSize="25dp"
-        android:layout_marginRight="-50dp"
+        android:textSize="25sp"
         />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/signup_email"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/signup_first"
-        android:hint="Email"
-        android:textSize="25dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:hint="Email"
+        android:textSize="25sp"
+        />
+
+    <EditText
+        android:id="@+id/signup_password"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_email"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:hint="Password"
+        android:textSize="25sp"
+        />
+
+    <EditText
+        android:id="@+id/signup_confirm_password"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_password"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:hint="Confirm Password"
+        android:textSize="25sp"
         />
 
     <Button
         android:id="@+id/signup_button"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/signup_email"
-        android:layout_marginTop="15dp"
+        android:layout_below="@+id/signup_confirm_password"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:text="Sign Up"
         />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/signup_password"
-        android:layout_below="@+id/signup_email"
-        android:hint="Password"
-        />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/signup_passwordconfirm"
-        android:layout_below="@+id/signup_email"
-        android:hint="Password Confirm"
-        android:layout_marginRight="-50dp"
-        />
-
 
 
 
