@@ -47,8 +47,8 @@ public class HomeView_Activity extends Activity {
         //final Intent goToProfileView = new Intent(this, ProfileActivity.class);
         //final Intent goToAppointmentsView = new Intent(this, ProfileActivity.class);
         // Same deal with two buttons leading to different tabs in SearchFiltering
-        //final Intent goToAvailabilitySearch = new Intent(this, SearchFilteringActivity.class);
-        //final Intent goToLocationSearch = new Intent(this, SearchFilteringActivity.class);
+        final Intent goToAvailabilitySearch = new Intent(this, SearchActivity.class);
+        //final Intent goToLocationSearch = new Intent(this, SearchActivity.class);
 
 
         // OnClickListeners for each clickable text or button
@@ -77,7 +77,7 @@ public class HomeView_Activity extends Activity {
         View.OnClickListener searchClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(goToAvailabilitySearch);
+                startActivity(goToAvailabilitySearch);
             }
         };
 
@@ -92,7 +92,7 @@ public class HomeView_Activity extends Activity {
         logout.setOnClickListener(logoutClick);
         //accountButton.setOnClickListener(accountClick);
         //appointmentsButton.setOnClickListener(appointmentsClick);
-        //searchButton.setOnClickListener(searchClick);
+        searchButton.setOnClickListener(searchClick);
         //sitesButton.setOnClickListener(sitesClick);
     }
 }

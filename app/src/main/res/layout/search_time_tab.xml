@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/time_pick_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Please select your next available date and time."/>
+
+
+    <ScrollView
+        android:id="@+id/scrollSearch"
+        android:layout_below="@+id/time_pick_text"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/buttonSelectDate"
+                android:layout_marginTop="20dp"
+                android:textSize="25dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Date" />
+
+            <LinearLayout
+                android:id="@+id/calendar_linearLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/buttonSelectDate"
+                android:visibility="gone">
+
+                <CalendarView
+                    android:id="@+id/calendar_search"
+                    android:layout_width="fill_parent"
+                    android:layout_height="250dp"
+                    android:layout_margin="15dp">
+                </CalendarView>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonSelectTime"
+                android:layout_marginTop="20dp"
+                android:textSize="25dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Time" />
+
+            <LinearLayout
+                android:id="@+id/timepicker_linearLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/buttonSelectTime"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone">
+
+                <TimePicker
+                    android:id="@+id/timepicker_search"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                </TimePicker>
+
+                <Button
+                    android:id="@+id/time_save_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set Time"
+                    android:layout_below="@+id/timepicker_search"
+                    android:layout_marginTop="5dp"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonSearchDateTime"
+                android:layout_marginTop="20dp"
+                android:textSize="25dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Search" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
