@@ -19,13 +19,19 @@ import android.widget.EditText;
 import android.net.Uri;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -36,18 +42,24 @@ public class TabTwoFragment extends Fragment {
 
     private static GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
-    private static Double latitude, longitude;
+    private static Double latitude, longitude, mlatitude, mlongitude;
 
-    private double mlatitude, mlongitude; // to store user picked coordinates
     private String coordinateText;
 
     EditText addrText;
-    Button mapSearchButton;
+    Button mapSearchButton, viewDetailButton;
 
     TextView locationData;
 
     private final String TAG = "MapLocation";
     final Activity self = this.getActivity();
+
+    private List<Marker> markerList;
+
+    private final static List<Double> fakeLatList = Arrays.asList(new Double[]{42.3512972, 42.3629523, 42.3493625});
+    private final static List<Double> fakeLngList = Arrays.asList(new Double[]{-71.0817463, -71.0686975, -71.0857804});
+    private final static List<String> fakeName = Arrays.asList("Boston Common", "MGH", "Pour House");
+    private final static List<String> fakeAvai = Arrays.asList("Sept 1, 11-12", "Aug 30, 3-5", "Sept 5, 9-10");
 
 
     @Override
@@ -62,6 +74,7 @@ public class TabTwoFragment extends Fragment {
         mapSearchButton = (Button) rootView.findViewById(R.id.mapButton);
 
         locationData = (TextView) rootView.findViewById(R.id.coordinates);
+        viewDetailButton = (Button) rootView.findViewById(R.id.view_site_info_button);
 
         mapSearchButton.setOnClickListener(new View.OnClickListener() {
 
@@ -72,14 +85,6 @@ public class TabTwoFragment extends Fragment {
                     // Process text for network transmission
                     String address = addrText.getText().toString();
                     address = address.replace(' ', '+');
-
-                    // Create Intent object for starting Google Maps application
-//                    Intent geoIntent = new Intent(
-//                            android.content.Intent.ACTION_VIEW, Uri
-//                            .parse("geo:0,0?q=" + address));
-
-//                    // Use the Intent to start Google Maps application using Activity.startActivity()
-//                    startActivity(geoIntent);
 
                     LatLng latlng = getLocationFromAddress(address);
 
@@ -96,14 +101,19 @@ public class TabTwoFragment extends Fragment {
             }
         });
 
+        viewDetailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         // Buzzlab
+        // TODO: get the current location by GPS
         latitude = 42.350529;
         longitude = -71.099855;
 
         setUpMapIfNeeded();
-
-        // Washington DC
-
 
         return rootView;
     }
@@ -166,46 +176,76 @@ public class TabTwoFragment extends Fragment {
      * This should only be called once and when we are sure that {@link #mMap}
      * is not null.
      */
-    private static void setUpMap() {
+    private void setUpMap() {
 
-        mMap.clear();
+        markerList = new ArrayList<>();
         // For showing a move to my loction button
         mMap.setMyLocationEnabled(true);
-        // For dropping a marker at a point on the Map
-        final LatLng posCor = new LatLng(latitude, longitude);
-        mMap.addMarker(new MarkerOptions().position(posCor).title("My Home").snippet("Home Address"));
+        for (int i = 0; i < fakeLatList.size(); i++) {
+            final LatLng posCor = new LatLng(fakeLatList.get(i), fakeLngList.get(i));
+            Marker currentMarker = mMap.addMarker(new MarkerOptions().position(posCor).
+                    title(fakeName.get(i)).snippet(fakeAvai.get(i)));
+            currentMarker.setAlpha(Float.parseFloat("0.5"));
+            markerList.add(currentMarker);
+        }
 
-       // For zooming automatically to the Dropped PIN Location
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(posCor, 12.0f));
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (Marker marker : markerList) {
+            builder.include(marker.getPosition());
+        }
+        LatLngBounds bounds = builder.build();
+
+        int padding = 100; // offset from edges of the map in pixels
+        final CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+                mMap.animateCamera(cu);
+            }
+        });
+
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                if (markerList.contains(marker)) {
+//                    mlatitude = marker.getPosition().latitude;
+//                    mlongitude = marker.getPosition().longitude;
+
+                    String nameOfSite = marker.getTitle();
+                    String availableTime = marker.getSnippet();
+
+//                    coordinateText = "Your chosen coordinate is " + String.valueOf(mlatitude) + ',' + String.valueOf(mlatitude);
+
+                    coordinateText = "Site Name: " + nameOfSite + ", Availability: " + availableTime;
+                    locationData.setText(coordinateText);
+                    viewDetailButton.setVisibility(View.VISIBLE);
+                    return true;
+                } else {
+                    locationData.setText("No site chosen yet.");
+                    viewDetailButton.setVisibility(View.GONE);
+                    return false;
+                }
+            }
+        });
+
+
     }
 
 
     private void refreshMap() {
 
         mMap.clear();
-        // For showing a move to my loction button
-        mMap.setMyLocationEnabled(true);
+
         // For dropping a marker at a point on the Map
         final LatLng posCor = new LatLng(latitude, longitude);
-        final Marker myPosition = mMap.addMarker(new MarkerOptions().position(posCor).title("My Home").snippet("Home Address"));
-        // Set onclick event
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                if(marker.equals(myPosition)){
-                    mlatitude = marker.getPosition().latitude;
-                    mlongitude = marker.getPosition().longitude;
-                    coordinateText = "Your chosen coordinate is " + String.valueOf(mlatitude) + ',' + String.valueOf(mlatitude);
-                    locationData.setText(coordinateText);
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
+        Marker currentMarker = mMap.addMarker(new MarkerOptions().position(posCor).title("My Position"));
+        currentMarker.setFlat(true);
 
-        // For zooming automatically to the Dropped PIN Location
+        setUpMap();
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(posCor, 12.0f));
+
     }
 
 
