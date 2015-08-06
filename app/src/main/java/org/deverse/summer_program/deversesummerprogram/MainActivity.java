@@ -82,7 +82,8 @@ public class MainActivity extends Activity {
                             startActivity(goToWelcomeActivity);
                         } else {
                             // User does not exist
-                            Toast.makeText(getApplicationContext(), "User does not exist!", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "User does not exist!", Toast.LENGTH_LONG).show();
+                            startActivity(goToWelcomeActivity);
                         }
                     }
 
