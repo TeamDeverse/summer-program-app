@@ -44,8 +44,8 @@ public class HomeView_Activity extends Activity {
         //     in the ProfileActivity. Do we need two separate intents that go straight to the
         //     correct tab? Perhaps code in ProfileActivity.java can distinguish the intents
         //     and choose which tap is displayed
-        //final Intent goToProfileView = new Intent(this, ProfileActivity.class);
-        //final Intent goToAppointmentsView = new Intent(this, ProfileActivity.class);
+        final Intent goToProfileView = new Intent(this, UserProfileActivity.class);
+        //final Intent goToAppointmentsView = new Intent(this, UserProfileActivity.class);
         // Same deal with two buttons leading to different tabs in SearchFiltering
         final Intent goToAvailabilitySearch = new Intent(this, SearchActivity.class);
         //final Intent goToLocationSearch = new Intent(this, SearchActivity.class);
@@ -63,7 +63,7 @@ public class HomeView_Activity extends Activity {
         View.OnClickListener accountClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(goToProfileView);
+                startActivity(goToProfileView);
             }
         };
 
@@ -90,7 +90,7 @@ public class HomeView_Activity extends Activity {
 
         // Set the OnClickListeners
         logout.setOnClickListener(logoutClick);
-        //accountButton.setOnClickListener(accountClick);
+        accountButton.setOnClickListener(accountClick);
         //appointmentsButton.setOnClickListener(appointmentsClick);
         searchButton.setOnClickListener(searchClick);
         //sitesButton.setOnClickListener(sitesClick);
