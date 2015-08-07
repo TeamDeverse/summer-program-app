@@ -7,14 +7,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class WelcomeActivity extends Activity {
 
     TextView helloText;
     Button homeButton;
+    ListView badgeList;
+    private List<String> userBadges = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,7 @@ public class WelcomeActivity extends Activity {
 
         helloText = (TextView) findViewById(R.id.hello_text);
         homeButton = (Button) findViewById(R.id.home_button);
+        badgeList = (ListView) findViewById(R.id.badge_list);
 
         final Intent goToHomeViewActivity = new Intent(this, HomeView_Activity.class);
 
@@ -42,5 +50,21 @@ public class WelcomeActivity extends Activity {
         // Assign the click listener for each button
         homeButton.setOnClickListener(homeClick);
 
+        populateListView();
+
+        // ArrayAdapter to supply row views to the list view of badges
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.badge_list_item, userBadges);
+
+        // Assign the adapter to the list view of badges
+        badgeList.setAdapter(adapter);
+
+    }
+
+    private void populateListView() {
+        // Create fake list of badges
+        userBadges.add("First Volunteer Shift");
+        userBadges.add("Volunteered 10 Hours");
+        userBadges.add("Volunteered 20 Hours");
+        userBadges.add("Super Volunteer");
     }
 }
