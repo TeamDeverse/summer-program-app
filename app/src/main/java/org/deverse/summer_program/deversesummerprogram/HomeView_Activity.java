@@ -40,15 +40,8 @@ public class HomeView_Activity extends Activity {
 
         // Create intents for going to other pages
         final Intent goToMainActivity = new Intent(this, MainActivity.class);
-        // Two of the buttons (Account and Appointments) take the user to different tabs
-        //     in the ProfileActivity. Do we need two separate intents that go straight to the
-        //     correct tab? Perhaps code in ProfileActivity.java can distinguish the intents
-        //     and choose which tap is displayed
         final Intent goToProfileView = new Intent(this, UserProfileActivity.class);
-        //final Intent goToAppointmentsView = new Intent(this, UserProfileActivity.class);
-        // Same deal with two buttons leading to different tabs in SearchFiltering
-        final Intent goToAvailabilitySearch = new Intent(this, SearchActivity.class);
-        //final Intent goToLocationSearch = new Intent(this, SearchActivity.class);
+        final Intent goToSearchView = new Intent(this, SearchActivity.class);
 
 
         // OnClickListeners for each clickable text or button
@@ -70,29 +63,31 @@ public class HomeView_Activity extends Activity {
         View.OnClickListener appointmentsClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(goToAppointmentsView);
+                goToProfileView.putExtra("tabSelected", "events");
+                startActivity(goToProfileView);
             }
         };
 
         View.OnClickListener searchClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(goToAvailabilitySearch);
+                startActivity(goToSearchView);
             }
         };
 
         View.OnClickListener sitesClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(goToLocationSearch);
+                goToSearchView.putExtra("tabSelected", "location");
+                startActivity(goToSearchView);
             }
         };
 
         // Set the OnClickListeners
         logout.setOnClickListener(logoutClick);
         accountButton.setOnClickListener(accountClick);
-        //appointmentsButton.setOnClickListener(appointmentsClick);
+        appointmentsButton.setOnClickListener(appointmentsClick);
         searchButton.setOnClickListener(searchClick);
-        //sitesButton.setOnClickListener(sitesClick);
+        sitesButton.setOnClickListener(sitesClick);
     }
 }
