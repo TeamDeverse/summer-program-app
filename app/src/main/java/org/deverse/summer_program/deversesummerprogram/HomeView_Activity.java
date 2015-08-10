@@ -56,6 +56,7 @@ public class HomeView_Activity extends Activity {
         View.OnClickListener accountClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                goToProfileView.putExtra("tabSelected", "profile");
                 startActivity(goToProfileView);
             }
         };
@@ -71,6 +72,7 @@ public class HomeView_Activity extends Activity {
         View.OnClickListener searchClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                goToSearchView.putExtra("tabSelected", "time");
                 startActivity(goToSearchView);
             }
         };
