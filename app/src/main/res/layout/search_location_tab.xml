@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/location_pick_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Please enter you current location."/>
+
+    <EditText
+        android:id="@+id/enter_location"
+        android:layout_below="@+id/location_pick_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:hint="Enter Address"
+        android:textSize="25dp"
+        android:inputType="textPostalAddress" />
+
+    <Button
+        android:id="@+id/mapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enter_location"
+        android:layout_centerHorizontal="true"
+        android:textSize="25dp"
+        android:text="Search Location" />
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/map"
+        android:layout_below="@+id/mapButton"
+        android:name="com.google.android.gms.maps.MapFragment" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/map">
+
+        <TextView
+            android:id="@+id/coordinates"
+            android:textSize="12sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="No site chosen yet."
+            android:layout_below="@+id/map"
+            android:layout_weight="2"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/view_site_info_button"
+            android:visibility="gone"
+            android:text="View Details"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

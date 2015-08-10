@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,112 +15,135 @@
         android:layout_height="75dp"
         android:src="@drawable/bth_logo"
         android:layout_marginTop="10dp"
-        />
+        android:layout_marginLeft="10dp"
+    />
 
     <TextView
         android:id="@+id/home_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="18dp"
-        android:textSize="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/bth_Banner"
         android:text="Home"
+        android:textSize="40sp"
         android:textColor="#71c251"
         android:fontFamily="serif"
-        />
-
-    <Button
-        android:id="@+id/Account_button"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:text="My Account"
-        android:textSize="@dimen/big_text_size"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="10dp"
-        android:paddingTop="115dp"
-        android:background="@drawable/round_button"
-        />
-
-    <ImageView
-        android:id="@+id/profile"
-        android:layout_width="125dp"
-        android:layout_height="150dp"
-        android:src="@drawable/profile"
-        android:elevation="2dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="10dp"
-        android:paddingLeft="20dp"
-        />
-
-    <Button
-        android:id="@+id/Search_button"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:text="Search"
-        android:textSize="@dimen/big_text_size"
-        android:layout_marginTop="100dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:paddingTop="115dp"
-        android:background="@drawable/round_button"
-        />
-
-    <ImageView
-        android:id="@+id/search"
-        android:layout_width="150dp"
-        android:layout_height="130dp"
-        android:src="@drawable/search"
-        android:elevation="2dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="190dp"
-        />
-
-    <Button
-        android:id="@+id/Appointment_button"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:text="Sign Up"
-        android:textSize="@dimen/big_text_size"
-        android:layout_marginTop="275dp"
-        android:layout_marginLeft="10dp"
-        android:paddingTop="115dp"
-        android:background="@drawable/round_button"
-        />
-
-    <ImageView
-    android:id="@+id/sign_up"
-    android:layout_width="150dp"
-    android:layout_height="135dp"
-    android:src="@drawable/sign_up"
-    android:elevation="2dp"
-    android:layout_marginTop="275dp"
-    android:layout_marginLeft="10dp"
     />
 
-    <Button
-        android:id="@+id/Sites_button"
+    <TextView
+        android:id="@+id/log_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textSize="@dimen/small_text_size"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:layout_above="@+id/home_view"
+        android:layout_alignRight="@+id/home_view"
+    />
+
+    <ImageButton
+        android:id="@+id/account_button"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:text="Sites"
+        android:layout_below="@+id/bth_Banner"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/account"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+    />
+
+    <TextView
+        android:id="@+id/account_text"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/account_button"
+        android:layout_alignLeft="@+id/account_button"
+        android:text="Account"
         android:textSize="@dimen/big_text_size"
-        android:layout_marginTop="275dp"
+        android:textColor="#71c251"
+        android:gravity="center"
+    />
+
+    <ImageButton
+        android:id="@+id/search_button"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/home_view"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:paddingTop="115dp"
-        android:background="@drawable/round_button"
-        />
+        android:layout_marginTop="15dp"
+        android:src="@drawable/search"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+    />
 
-    <ImageView
-        android:id="@+id/sites"
+    <TextView
+        android:id="@+id/search_text"
         android:layout_width="150dp"
-        android:layout_height="125dp"
-        android:src="@drawable/location"
-        android:elevation="2dp"
-        android:layout_marginTop="275dp"
-        android:layout_marginLeft="190dp"
-        />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_button"
+        android:layout_alignLeft="@+id/search_button"
+        android:text="Search"
+        android:textSize="@dimen/big_text_size"
+        android:textColor="#71c251"
+        android:gravity="center"
+    />
+
+    <ImageButton
+        android:id="@+id/appointments_button"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/account_text"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/appointments"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+    />
+
+    <TextView
+        android:id="@+id/appointments_text"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appointments_button"
+        android:layout_alignLeft="@+id/appointments_button"
+        android:text="Appointments"
+        android:textSize="@dimen/big_text_size"
+        android:textColor="#71c251"
+        android:gravity="center"
+    />
+
+    <ImageButton
+        android:id="@+id/sites_button"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/search_text"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/sites"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+    />
+
+    <TextView
+        android:id="@+id/sites_text"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sites_button"
+        android:layout_alignLeft="@+id/sites_button"
+        android:text="Sites"
+        android:textSize="@dimen/big_text_size"
+        android:textColor="#71c251"
+        android:gravity="center"
+    />
 
     <!-- Days until next appointment in java -->
+    <!--
     <TextView
         android:id="@+id/days_until_app"
         android:layout_width="wrap_content"
@@ -130,19 +154,7 @@
         android:textSize="@dimen/big_text_size"
         android:text= " day until your next appointment"
         android:textColor="#71c251"
-        />
-
-    <TextView
-        android:id="@+id/log_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:textSize="@dimen/small_text_size"
-        android:onClick="onClick"
-        android:clickable="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/home_view"
-        android:layout_alignEnd="@+id/home_view"
-        />
+    />
+    -->
 
 </RelativeLayout>
